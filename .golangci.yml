@@ -7,25 +7,40 @@ linters-settings:
     check-type-assertions: true
    
     # Exclude Functions for err check 
-    exclude-functions:
+    #exclude-functions:
       # This will ignore error check for tx.Rollback()  
       #- (*database/sql.Tx).Rollback
-  
+   
+  staticcheck:
+    # All includes all the checks available, For updating refer this document about checks: https://staticcheck.io/docs/checks/
+    checks: ["all", "-SA1029"]
 
 linters:
   disable-all: true
   enable: 
+    - asciicheck
     - errcheck
+    - durationcheck
+    - goconst
+    #- gocritic
     - gofmt
     - gosimple
     - goimports
+    - gosec
     - govet
-    - ineffassign	
+    - ineffassign
+    - nilerr
+    - prealloc	
+    - rowserrcheck
     - staticcheck
-
+    - sqlclosecheck
+    - typecheck
+    - unused
 
 run:
-  timeout: 1m
+  
+  timeout: 3m
+  
   skip-dirs: 
     - pb/*
 
