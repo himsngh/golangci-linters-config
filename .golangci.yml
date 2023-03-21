@@ -1,0 +1,32 @@
+# https://github.com/golangci/golangci-lint/blob/master/.golangci.reference.yml -- Reference File
+
+
+linters-settings:
+  errcheck:
+    # Report about not checking of errors in type assertions: `a := b.(MyStruct)`.
+    check-type-assertions: true
+   
+    # Exclude Functions for err check 
+    exclude-functions:
+      # This will ignore error check for tx.Rollback()  
+      #- (*database/sql.Tx).Rollback
+  
+
+linters:
+  disable-all: true
+  enable: 
+    - errcheck
+    - gofmt
+    - gosimple
+    - goimports
+    - govet
+    - ineffassign	
+    - staticcheck
+
+
+run:
+  timeout: 1m
+  skip-dirs: 
+    - pb/*
+
+ 
